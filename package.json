@@ -6,7 +6,11 @@
   "dependencies": {
     "cypress": "^8.5.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^9.1.2",
+    "mochawesome": "^6.2.2",
+    "mochawesome-merge": "^4.2.0"
+  },
   "scripts": {
     "cy": "cypress open",
     "test": "cypress run --headless"

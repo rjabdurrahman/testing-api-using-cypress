@@ -66,6 +66,9 @@ describe('Testing file Upload', () => {
                     expect(response.body.data).to.have.property('file');
                     expect(response.body.data.file.url.full).to.be.a('string');
                     expect(response.body.data.file.url.short).to.be.a('string');
+                    let urlRegex = /^((http[s]?|ftp):\/)?\/?([^:\/\s]+)(:([^\/]*))?((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(\?([^#]*))?(#(.*))?$/;
+                    expect(response.body.data.file.url.short).to.match(urlRegex)
+                    expect(response.body.data.file.url.short).to.match(urlRegex)
                 })
         })
     })

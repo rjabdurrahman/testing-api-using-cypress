@@ -1,4 +1,7 @@
 {
+    "projectId": "api-testing",
     "baseUrl": "https://api.1forge.com",
-    "projectId": "api-testing"
+    "env": {
+        "API_KEY": "REfCLcS9FnZ0WxYxFtQ9m3SJsSugMAYU"
+    }
 }

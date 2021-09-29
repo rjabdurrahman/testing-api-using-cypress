@@ -33,7 +33,7 @@ describe('Testing file Upload', () => {
         })
     })
 
-    it('Should get file details on response', () => {
+    it('Should get file name on response', () => {
         const fileName = 'demo_file.txt';
         const url = `${baseUrlOfAnonFiles}/upload`;
         const fileType = 'text/plain';
@@ -47,6 +47,25 @@ describe('Testing file Upload', () => {
                     expect(response.body).to.be.a('object');
                     expect(response.body.data).to.have.property('file');
                     expect(response.body.data.file.metadata.name).to.be.equal(fileName);
+                })
+        })
+    })
+
+    it('Should get file short and full URL on response', () => {
+        const fileName = 'demo_file.txt';
+        const url = `${baseUrlOfAnonFiles}/upload`;
+        const fileType = 'text/plain';
+        cy.fixture(fileName, 'binary').then((fileBin) => {
+            const blob = Cypress.Blob.binaryStringToBlob(fileBin, fileType);
+            const formData = new FormData();
+            formData.set('file', blob, fileName);
+            cy.form_request(url, formData)
+                .then(result => {
+                    let response = result.response;
+                    expect(response.body).to.be.a('object');
+                    expect(response.body.data).to.have.property('file');
+                    expect(response.body.data.file.url.full).to.be.a('string');
+                    expect(response.body.data.file.url.short).to.be.a('string');
                 })
         })
     })

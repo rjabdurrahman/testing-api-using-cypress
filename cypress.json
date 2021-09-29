@@ -3,5 +3,9 @@
     "baseUrl": "https://api.1forge.com",
     "env": {
         "API_KEY": "REfCLcS9FnZ0WxYxFtQ9m3SJsSugMAYU"
-    }
+    },
+    "pageLoadTimeout": 50000,
+    "requestTimeout": 6000,
+    "testFiles": "**/*.spec.js",
+    "video": false
 }

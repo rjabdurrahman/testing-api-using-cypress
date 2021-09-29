@@ -38,4 +38,14 @@ describe('Endpoint GET /quotes', () => {
                 expect(body).to.have.lengthOf(3);
             })
     })
+
+    it('Should get array with objects containing keys s, p, b, a, s', () => {
+        cy.request(`/quotes?pairs=EUR/USD,GBP/JPY,AUD/USD&api_key=${apiKey}`)
+            .then(response => {
+                expect(response.status).to.eq(200);
+                let body = response.body;
+                expect(body).to.a('array');
+                expect(...body.map(x => Object.keys(x))).to.include.members(['s', 'p', 'b', 'a', 's'])
+            })
+    })
 })

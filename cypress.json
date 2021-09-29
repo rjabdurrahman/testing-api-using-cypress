@@ -7,5 +7,13 @@
     "pageLoadTimeout": 50000,
     "requestTimeout": 6000,
     "testFiles": "**/*.spec.js",
-    "video": false
+    "video": false,
+    "reporter": "mochawesome",
+    "reporterOptions": {
+        "reportDir": "cypress/report",
+        "overwrite": true,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+    }
 }

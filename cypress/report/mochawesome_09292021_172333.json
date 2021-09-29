@@ -1,0 +1,182 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-09-29T11:23:32.123Z",
+    "end": "2021-09-29T11:23:33.819Z",
+    "duration": 1696,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "1b417cfc-f223-488a-be1a-78c28f909684",
+      "title": "",
+      "fullFile": "cypress/integration/Quote API Testing/quotes.spec.js",
+      "file": "cypress/integration/Quote API Testing/quotes.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "44af9115-d136-4af4-9711-c67f43ab8d9f",
+          "title": "Endpoint GET /quotes",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should send status 200",
+              "fullTitle": "Endpoint GET /quotes Should send status 200",
+              "timedOut": null,
+              "duration": 240,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request('/quotes').then(response => {\n  expect(response.status).to.eq(200);\n});",
+              "err": {},
+              "uuid": "0806426f-6d76-4c3d-96d9-dc4990b54999",
+              "parentUUID": "44af9115-d136-4af4-9711-c67f43ab8d9f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Request without API key should send body with error true and message",
+              "fullTitle": "Endpoint GET /quotes Request without API key should send body with error true and message",
+              "timedOut": null,
+              "duration": 258,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request('/quotes').then(response => {\n  expect(response.status).to.eq(200);\n  let body = response.body;\n  expect(body).to.a('object');\n  expect(body).to.have.keys('error', 'message');\n  expect(body).to.have.property('error', true);\n  expect(body).to.have.property('message', \"API Key Not Valid. Please go to 1forge.com to get an API key. If you have any questions please email us at contact@1forge.com\");\n});",
+              "err": {},
+              "uuid": "f37c82f0-0387-45aa-b953-3697ab3a79f7",
+              "parentUUID": "44af9115-d136-4af4-9711-c67f43ab8d9f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Request with valid API Key should send an array",
+              "fullTitle": "Endpoint GET /quotes Request with valid API Key should send an array",
+              "timedOut": null,
+              "duration": 235,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request(`/quotes?api_key=${apiKey}`).then(response => {\n  expect(response.status).to.eq(200);\n  let body = response.body;\n  expect(body).to.a('array');\n});",
+              "err": {},
+              "uuid": "808b0f72-f3c6-47dd-bf8d-b2cb6b8cee6f",
+              "parentUUID": "44af9115-d136-4af4-9711-c67f43ab8d9f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Request with 3 symbol pairs should send Array with length 3",
+              "fullTitle": "Endpoint GET /quotes Request with 3 symbol pairs should send Array with length 3",
+              "timedOut": null,
+              "duration": 240,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request(`/quotes?pairs=EUR/USD,GBP/JPY,AUD/USD&api_key=${apiKey}`).then(response => {\n  expect(response.status).to.eq(200);\n  let body = response.body;\n  expect(body).to.a('array');\n  expect(body).to.have.lengthOf(3);\n});",
+              "err": {},
+              "uuid": "2b912aca-4ffb-4c9e-aaa5-5a00d3a6c37e",
+              "parentUUID": "44af9115-d136-4af4-9711-c67f43ab8d9f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should get array with objects containing keys s, p, b, a, s",
+              "fullTitle": "Endpoint GET /quotes Should get array with objects containing keys s, p, b, a, s",
+              "timedOut": null,
+              "duration": 696,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request(`/quotes?pairs=EUR/USD,GBP/JPY,AUD/USD&api_key=${apiKey}`).then(response => {\n  expect(response.status).to.eq(200);\n  let body = response.body;\n  expect(body).to.a('array');\n  expect(...body.map(x => Object.keys(x))).to.include.members(['s', 'p', 'b', 'a', 's']);\n});",
+              "err": {},
+              "uuid": "3fa08e25-13cf-4399-9a5b-84b177fbb67f",
+              "parentUUID": "44af9115-d136-4af4-9711-c67f43ab8d9f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0806426f-6d76-4c3d-96d9-dc4990b54999",
+            "f37c82f0-0387-45aa-b953-3697ab3a79f7",
+            "808b0f72-f3c6-47dd-bf8d-b2cb6b8cee6f",
+            "2b912aca-4ffb-4c9e-aaa5-5a00d3a6c37e",
+            "3fa08e25-13cf-4399-9a5b-84b177fbb67f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1669,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/report",
+        "overwrite": true,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "5.2.0"
+    }
+  }
+}

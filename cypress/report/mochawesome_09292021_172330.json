@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-09-29T11:23:30.170Z",
+    "end": "2021-09-29T11:23:30.925Z",
+    "duration": 755,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e57ca29b-c7b8-418d-ac4c-9575ea6c5682",
+      "title": "",
+      "fullFile": "cypress/integration/Quote API Testing/quota.spec.js",
+      "file": "cypress/integration/Quote API Testing/quota.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "cc8e55d7-808e-47da-80e0-c879c734bdd4",
+          "title": "Endpoint GET /quota",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should send status 200",
+              "fullTitle": "Endpoint GET /quota Should send status 200",
+              "timedOut": null,
+              "duration": 243,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request('/quota').then(response => {\n  expect(response.status).to.eq(200);\n});",
+              "err": {},
+              "uuid": "53685be3-319c-4f3a-8bd2-c8a31013e5c3",
+              "parentUUID": "cc8e55d7-808e-47da-80e0-c879c734bdd4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Request without API key should send body with error true and message",
+              "fullTitle": "Endpoint GET /quota Request without API key should send body with error true and message",
+              "timedOut": null,
+              "duration": 245,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request(`/quota`).then(response => {\n  expect(response.status).to.eq(200);\n  let body = response.body;\n  expect(body).to.a('object');\n  expect(body).to.have.keys('error', 'message');\n  expect(body).to.have.property('error', true);\n  expect(body).to.have.property('message', \"API Key Not Valid. Please go to 1forge.com to get an API key. If you have any questions please email us at contact@1forge.com\");\n});",
+              "err": {},
+              "uuid": "f451a171-152d-4582-b1cc-dd0827ed2c8b",
+              "parentUUID": "cc8e55d7-808e-47da-80e0-c879c734bdd4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Request with valid API Key should send an object with key quota_used, quota_limit, quota_remaining, hours_until_reset",
+              "fullTitle": "Endpoint GET /quota Request with valid API Key should send an object with key quota_used, quota_limit, quota_remaining, hours_until_reset",
+              "timedOut": null,
+              "duration": 246,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request(`/quota?api_key=${apiKey}`).then(response => {\n  expect(response.status).to.eq(200);\n  let body = response.body;\n  expect(body).to.a('object');\n  expect(body).to.have.keys('quota_used', 'quota_limit', 'quota_remaining', 'hours_until_reset');\n  expect(body.quota_used).to.be.a('number');\n  expect(body.quota_limit).to.be.a('number');\n  expect(body.quota_remaining).to.be.a('number');\n  expect(body.hours_until_reset).to.be.a('number');\n});",
+              "err": {},
+              "uuid": "e4c228a8-c5b8-4ebd-9ee3-7ed8e8efd955",
+              "parentUUID": "cc8e55d7-808e-47da-80e0-c879c734bdd4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "53685be3-319c-4f3a-8bd2-c8a31013e5c3",
+            "f451a171-152d-4582-b1cc-dd0827ed2c8b",
+            "e4c228a8-c5b8-4ebd-9ee3-7ed8e8efd955"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 734,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/report",
+        "overwrite": true,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "5.2.0"
+    }
+  }
+}

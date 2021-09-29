@@ -1,0 +1,163 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-09-29T11:23:02.504Z",
+    "end": "2021-09-29T11:23:23.681Z",
+    "duration": 21177,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b5cd4a14-7dd2-4bd7-8e9d-98b1af962c4b",
+      "title": "",
+      "fullFile": "cypress/integration/anonfiles API Testing/fileUpload.spec.js",
+      "file": "cypress/integration/anonfiles API Testing/fileUpload.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8aaa3dc6-0cd1-434a-b243-827bf2789fb5",
+          "title": "Testing file Upload",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should send status 400 if don't attach file",
+              "fullTitle": "Testing file Upload Should send status 400 if don't attach file",
+              "timedOut": null,
+              "duration": 5582,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: `${baseUrlOfAnonFiles}/upload`,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.be.eq(400);\n});",
+              "err": {},
+              "uuid": "f3b77c89-78ed-4265-aa08-77c47effbb4a",
+              "parentUUID": "8aaa3dc6-0cd1-434a-b243-827bf2789fb5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should send status 200 on file upload",
+              "fullTitle": "Testing file Upload Should send status 200 on file upload",
+              "timedOut": null,
+              "duration": 11844,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const fileName = 'demo_file.txt';\nconst url = `${baseUrlOfAnonFiles}/upload`;\nconst fileType = 'text/plain';\ncy.fixture(fileName, 'binary').then(fileBin => {\n  const blob = Cypress.Blob.binaryStringToBlob(fileBin, fileType);\n  const formData = new FormData();\n  formData.set('file', blob, fileName);\n  cy.form_request(url, formData).then(result => {\n    expect(result.status).to.eq(200);\n  });\n});",
+              "err": {},
+              "uuid": "2ebb80c9-6e53-444a-93fa-6759447f166a",
+              "parentUUID": "8aaa3dc6-0cd1-434a-b243-827bf2789fb5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should get file name on response",
+              "fullTitle": "Testing file Upload Should get file name on response",
+              "timedOut": null,
+              "duration": 320,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const fileName = 'demo_file.txt';\nconst url = `${baseUrlOfAnonFiles}/upload`;\nconst fileType = 'text/plain';\ncy.fixture(fileName, 'binary').then(fileBin => {\n  const blob = Cypress.Blob.binaryStringToBlob(fileBin, fileType);\n  const formData = new FormData();\n  formData.set('file', blob, fileName);\n  cy.form_request(url, formData).then(result => {\n    let response = result.response;\n    expect(response.body).to.be.a('object');\n    expect(response.body.data).to.have.property('file');\n    expect(response.body.data.file.metadata.name).to.be.equal(fileName);\n  });\n});",
+              "err": {},
+              "uuid": "18836ef3-2093-4456-9cbb-515b87f915c2",
+              "parentUUID": "8aaa3dc6-0cd1-434a-b243-827bf2789fb5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should get file short and full URL on response",
+              "fullTitle": "Testing file Upload Should get file short and full URL on response",
+              "timedOut": null,
+              "duration": 320,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const fileName = 'demo_file.txt';\nconst url = `${baseUrlOfAnonFiles}/upload`;\nconst fileType = 'text/plain';\ncy.fixture(fileName, 'binary').then(fileBin => {\n  const blob = Cypress.Blob.binaryStringToBlob(fileBin, fileType);\n  const formData = new FormData();\n  formData.set('file', blob, fileName);\n  cy.form_request(url, formData).then(result => {\n    let response = result.response;\n    expect(response.body).to.be.a('object');\n    expect(response.body.data).to.have.property('file');\n    expect(response.body.data.file.url.full).to.be.a('string');\n    expect(response.body.data.file.url.short).to.be.a('string');\n    let urlRegex = /^((http[s]?|ftp):\\/)?\\/?([^:\\/\\s]+)(:([^\\/]*))?((\\/\\w+)*\\/)([\\w\\-\\.]+[^#?\\s]+)(\\?([^#]*))?(#(.*))?$/;\n    expect(response.body.data.file.url.short).to.match(urlRegex);\n    expect(response.body.data.file.url.short).to.match(urlRegex);\n  });\n});",
+              "err": {},
+              "uuid": "94f8b6fd-0bd4-48b0-a363-a51af27012a4",
+              "parentUUID": "8aaa3dc6-0cd1-434a-b243-827bf2789fb5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f3b77c89-78ed-4265-aa08-77c47effbb4a",
+            "2ebb80c9-6e53-444a-93fa-6759447f166a",
+            "18836ef3-2093-4456-9cbb-515b87f915c2",
+            "94f8b6fd-0bd4-48b0-a363-a51af27012a4"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18066,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/report",
+        "overwrite": true,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "5.2.0"
+    }
+  }
+}

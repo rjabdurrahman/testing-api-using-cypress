@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-09-29T11:23:28.587Z",
+    "end": "2021-09-29T11:23:29.330Z",
+    "duration": 743,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "dfa11f60-0a05-47eb-9f65-f722bf75f3a5",
+      "title": "",
+      "fullFile": "cypress/integration/Quote API Testing/market_status.spec.js",
+      "file": "cypress/integration/Quote API Testing/market_status.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5843cc00-9916-4639-89e0-d08ff9c304c2",
+          "title": "Endpoint GET /market_status",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should send status 200",
+              "fullTitle": "Endpoint GET /market_status Should send status 200",
+              "timedOut": null,
+              "duration": 236,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request('/market_status').then(response => {\n  expect(response.status).to.eq(200);\n});",
+              "err": {},
+              "uuid": "e061fc3a-28ee-4d30-8983-b41f299e1851",
+              "parentUUID": "5843cc00-9916-4639-89e0-d08ff9c304c2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Request without API key should send body with error true and message",
+              "fullTitle": "Endpoint GET /market_status Request without API key should send body with error true and message",
+              "timedOut": null,
+              "duration": 258,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request(`/market_status`).then(response => {\n  expect(response.status).to.eq(200);\n  let body = response.body;\n  expect(body).to.a('object');\n  expect(body).to.have.keys('error', 'message');\n  expect(body).to.have.property('error', true);\n  expect(body).to.have.property('message', \"API Key Not Valid. Please go to 1forge.com to get an API key. If you have any questions please email us at contact@1forge.com\");\n});",
+              "err": {},
+              "uuid": "b0ad1ffd-c610-4b87-a776-9883136c3a64",
+              "parentUUID": "5843cc00-9916-4639-89e0-d08ff9c304c2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Request with valid API Key should send an object with key market_is_open",
+              "fullTitle": "Endpoint GET /market_status Request with valid API Key should send an object with key market_is_open",
+              "timedOut": null,
+              "duration": 231,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request(`/market_status?api_key=${apiKey}`).then(response => {\n  expect(response.status).to.eq(200);\n  let body = response.body;\n  expect(body).to.a('object');\n  expect(body).to.have.property('market_is_open');\n  expect(body.market_is_open).to.be.a('boolean');\n});",
+              "err": {},
+              "uuid": "631fcd20-8e56-44ab-9c25-daf01b41b211",
+              "parentUUID": "5843cc00-9916-4639-89e0-d08ff9c304c2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e061fc3a-28ee-4d30-8983-b41f299e1851",
+            "b0ad1ffd-c610-4b87-a776-9883136c3a64",
+            "631fcd20-8e56-44ab-9c25-daf01b41b211"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 725,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/report",
+        "overwrite": true,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "5.2.0"
+    }
+  }
+}

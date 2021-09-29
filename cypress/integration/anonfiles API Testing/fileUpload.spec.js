@@ -7,7 +7,7 @@ before(() => {
 })
 
 describe('Testing file Upload', () => {
-    it('Should send status 400 if don\'t attach file', () => {
+    it('Should send status 400 if doesn\'t attach file', () => {
         cy.request({
             method: 'POST',
             url: `${baseUrlOfAnonFiles}/upload`,

@@ -1,3 +1,8 @@
+before(() => {
+    /* Visiting this site to Bypass CORS for different Base URL */
+    cy.visit('https://api.anonfiles.com')
+})
+
 describe('Testing file Upload', () => {
     it('Should send response 200', () => {
         const fileName = 'demo_file.txt';

@@ -29,4 +29,13 @@ describe('Endpoint GET /symbols', () => {
             })
     })
 
+    it('Request with valid API Key should send an array with elments type string', () => {
+        cy.request(`/symbols?api_key=${apiKey}`)
+            .then(response => {
+                expect(response.status).to.eq(200);
+                let body = response.body;
+                expect(body.every(x => typeof(x) == 'string')).to.be.eq(true);
+            })
+    })
+
 })
